@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Merry Christmas WebGL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+      body { margin: 0; padding: 0; overflow: hidden; background-color: #000; font-family: 'Inter', sans-serif; }
+      .font-cursive { font-family: 'Great Vibes', cursive; }
+      /* Custom scrollbar for glass panels */
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 3px; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "zustand": "https://esm.sh/zustand@^5.0.9",
+    "@react-three/fiber": "https://esm.sh/@react-three/fiber@^9.4.2",
+    "three": "https://esm.sh/three@^0.182.0",
+    "@react-three/postprocessing": "https://esm.sh/@react-three/postprocessing@^3.0.4",
+    "@react-three/drei": "https://esm.sh/@react-three/drei@^10.7.7",
+    "gsap": "https://esm.sh/gsap@^3.14.2",
+    "@mediapipe/tasks-vision": "https://esm.sh/@mediapipe/tasks-vision@0.10.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <!-- 
+      The <div id="root"></div> is where your React application will be mounted.
+      It serves as the entry point for the React component tree.
+    -->
+    <div id="root"></div>
+    <!-- 
+      This script tag is crucial for loading your React application.
+      - `type="module"`: Indicates that the script is an ES module, allowing it to import other modules.
+      - `src="/index.tsx"`: This path points to your main React entry file.
+
+      IMPORTANT CONSIDERATIONS FOR DEPLOYMENT:
+
+      1. Development vs. Production:
+         In development mode (e.g., when running `npm run dev` with Vite),
+         Vite's development server transpiles 'index.tsx' on-the-fly and serves it to the browser.
+         This is why `src="/index.tsx"` works during development.
+
+      2. Deployment / Direct `index.html` Opening:
+         When deploying your application (e.g., to Vercel, or opening `index.html` directly from your file system),
+         a web browser CANNOT directly execute a `.tsx` file.
+         TypeScript (`.tsx`) needs to be transpiled into plain JavaScript (`.js`) first.
+
+         For deployment, you MUST run a build command (typically `npm run build`).
+         Vite will then:
+         a. Compile and bundle your React application into optimized JavaScript and CSS files.
+         b. Place these optimized assets, along with a NEW `index.html` file, into a `dist` folder.
+         c. The `index.html` inside the `dist` folder will automatically be updated by Vite to
+            reference the compiled JavaScript files (e.g., `<script type="module" crossorigin src="/assets/index.<hash>.js"></script>`).
+
+         To correctly deploy or view your built application, you must serve the contents of the `dist` folder.
+         If you are seeing a blank page after deployment or when opening the original `index.html` directly,
+         it is likely because you are serving or viewing the *development* `index.html` (which references `.tsx`),
+         instead of the *built* `index.html` (which references `.js`) from the `dist` folder.
+    -->
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
